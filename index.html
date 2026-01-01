@@ -35,26 +35,25 @@
         <img src="cyklista.svg" alt="Cyklista" class="hero-postava" />
 
         <img src="napis.svg" alt="Tour de Beer" class="hero-napis" />
-      </div>
-    </section>
-
-    <section class="countdown">
-      <div class="container countdown-obsah">
-        <div class="cas">
-          <span class="cislo" id="days">0</span>
-          <span class="popis">DNŮ</span>
-        </div>
-        <div class="cas">
-          <span class="cislo" id="hours">0</span>
-          <span class="popis">HODIN</span>
-        </div>
-        <div class="cas">
-          <span class="cislo" id="minutes">0</span>
-          <span class="popis">MINUT</span>
-        </div>
-        <div class="cas">
-          <span class="cislo" id="seconds">0</span>
-          <span class="popis">SEKUND</span>
+        <div class="countdown-hero">
+          <div class="container countdown-obsah">
+            <div class="cas">
+              <span class="cislo" id="days">0</span>
+              <span class="popis">DNŮ</span>
+            </div>
+            <div class="cas">
+              <span class="cislo" id="hours">0</span>
+              <span class="popis">HODIN</span>
+            </div>
+            <div class="cas">
+              <span class="cislo" id="minutes">0</span>
+              <span class="popis">MINUT</span>
+            </div>
+            <div class="cas">
+              <span class="cislo" id="seconds">0</span>
+              <span class="popis">SEKUND</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -83,14 +82,7 @@
     </section>
 
     <section class="mapa">
-      <iframe
-        style="border: none"
-        src="https://mapy.com/s/jotolaluse"
-        width="400"
-        height="280"
-        frameborder="0"
-        loading="lazy"
-      ></iframe>
+      <iframe src="https://mapy.com/s/jotolaluse" loading="lazy"></iframe>
     </section>
     <script>
       const targetDate = new Date("2026-06-27T07:30:00").getTime();
