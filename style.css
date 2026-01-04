@@ -23,10 +23,16 @@ header {
   color: white;
 }
 
+.logo img {
+  padding-top: 5px;
+  height: 50px;
+}
+
 .menu-rozlozeni {
   display: flex; /* Zapne "flexibilní" režim */
   justify-content: space-between; /* Roztáhne prvky od sebe (jeden vlevo, druhý vpravo) */
   align-items: center;
+  height: 80px;
 }
 
 nav ul {
@@ -63,9 +69,11 @@ nav a:hover::after {
 
 .hero {
   position: relative;
-  min-height: 100vh;
+  height: 90vh;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
   background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)),
     url("brezova.jpg");
   background-size: cover;
@@ -76,13 +84,14 @@ nav a:hover::after {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 80px;
+  gap: 20px;
   width: 100%;
   padding: 0 20px;
+  padding-bottom: 100px;
 }
 
 .hero-postava {
-  max-height: 450px; /* Aby postavička nebyla obří */
+  max-height: 450px;
   width: auto;
 }
 
@@ -93,54 +102,6 @@ nav a:hover::after {
   width: auto;
 }
 
-.hero-prava {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-}
-
-.countdown-hero {
-  display: flex;
-  gap: 30px;
-  color: #f39c12;
-}
-
-.countdown-hero .cas {
-  display: flex;
-  gap: 6px;
-  align-items: baseline;
-}
-
-.countdown-hero .cislo {
-  font-size: 40px;
-  font-weight: 700;
-}
-
-.countdown-hero .popis {
-  font-size: 22px;
-  font-weight: 300;
-}
-
-@media (max-width: 768px) {
-  .hero-prava {
-    align-items: center;
-  }
-
-  .countdown-hero {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-  }
-
-  .countdown-hero .cislo {
-    font-size: 28px;
-  }
-
-  .countdown-hero .popis {
-    font-size: 16px;
-  }
-}
-
 @media (max-width: 768px) {
   .hero-obsah {
     flex-direction: column; /* Dají se pod sebe */
@@ -149,18 +110,27 @@ nav a:hover::after {
 
   .hero {
     height: auto; /* Na mobilu se výška přizpůsobí obsahu */
-    padding: 50px 0;
+    padding: 30px 0;
   }
 
   .hero-postava {
-    max-height: 300px;
-    margin-bottom: 50px;
+    max-height: 180px;
+    margin-bottom: 10px;
   }
 }
 
 .countdown {
+  z-index: 6966;
   background-color: #1f1f1f;
   color: #f39c12;
+
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.5);
+  margin-bottom: -10px;
+  border-top: 2px solid #f39c12;
 }
 
 .countdown-obsah {
@@ -177,15 +147,16 @@ nav a:hover::after {
   align-items: baseline; /* zarovná texty hezky k sobě */
   gap: 8px;
   justify-content: center;
+  transform: translateY(-6px);
 }
 
 .cislo {
-  font-size: 36px;
+  font-size: 30px;
   font-weight: 700;
 }
 
 .popis {
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 300;
 }
 
@@ -193,7 +164,7 @@ nav a:hover::after {
 @media (max-width: 768px) {
   .countdown-obsah {
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 0px;
   }
 
   .cas {
@@ -216,7 +187,7 @@ nav a:hover::after {
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 40px;
 
-  margin: 80px auto;
+  margin: 30px auto;
   max-width: 1200px;
   padding: 0 20px;
 }
@@ -415,5 +386,172 @@ nav a:hover::after {
 @media (max-width: 600px) {
   .mapa iframe {
     height: 300px;
+  }
+}
+
+.banner-prize {
+  background-color: #f39c12; /* Stejná oranžová jako v headeru */
+  color: white;
+  width: 100%;
+  padding: 40px 0;
+  margin: 40px 0;
+}
+
+.banner-obsah {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+}
+
+/* Animace pulzování poháru */
+.pohar-box {
+  flex-shrink: 0;
+}
+
+.pohar-svg {
+  height: 120px; /* Nastav si podle potřeby */
+  width: auto;
+  animation: pulzovani 2s infinite ease-in-out;
+}
+
+@keyframes pulzovani {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  } /* Jemné zvětšení o 10% */
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Texty v banneru */
+.text-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.banner-nadpis {
+  font-size: 28px;
+  margin: 0;
+  text-transform: none;
+  border-bottom: 2px solid white;
+  padding-bottom: 5px;
+  display: inline-block;
+}
+
+.banner-podnadpis {
+  font-size: 36px;
+  margin: 10px 0 0 0;
+  font-weight: 300;
+}
+
+.banner-podnadpis strong {
+  font-weight: 700;
+}
+
+/* === RESPONZIVITA PRO BANNER === */
+@media (max-width: 768px) {
+  .banner-obsah {
+    flex-direction: column; /* Na mobilu pod sebe */
+    text-align: center;
+    gap: 20px;
+  }
+
+  .banner-nadpis {
+    font-size: 22px;
+  }
+
+  .banner-podnadpis {
+    font-size: 28px;
+  }
+
+  .pohar-svg {
+    height: 100px;
+  }
+}
+
+/* --- CAROUSEL STATISTIKY --- */
+
+.carousel-viewport {
+  overflow: hidden;
+  cursor: grab;
+  user-select: none; /* Zabraní označování textu při tažení */
+  padding: 20px 0;
+}
+
+.carousel-viewport:active {
+  cursor: grabbing;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 80px;
+  width: max-content;
+  will-change: transform;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  white-space: nowrap;
+}
+
+.carousel-stats {
+  font-size: 24px;
+  padding: 10px 0;
+  overflow: hidden; /* Skryje přesahující obsah */
+  background-color: #fff;
+}
+
+.carousel-nadpis {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 800;
+}
+
+.carousel-wrapper {
+  display: flex;
+  width: 100%;
+}
+
+.carousel-track:hover {
+  animation-play-state: paused;
+}
+
+.stat-item .rok {
+  color: #f39c12;
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.stat-item strong {
+  font-weight: 800;
+}
+
+/* Definice pohybu */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(
+      calc(-50% - 30px)
+    ); /* Posun o polovinu šířky tracku */
+  }
+}
+
+/* Responzivita */
+@media (max-width: 768px) {
+  .carousel-nadpis {
+    font-size: 26px;
+    text-align: center;
+  }
+  .stat-item {
+    font-size: 20px;
   }
 }
