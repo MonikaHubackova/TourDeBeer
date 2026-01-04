@@ -206,6 +206,28 @@
     <section class="mapa">
       <iframe src="https://mapy.com/s/jotolaluse" loading="lazy"></iframe>
     </section>
+
+    <footer>
+      <div class="container footer-obsah">
+        <div class="footer-text">
+          <p>© TDB 2002 – 2026<br />Tour de Beer Team</p>
+          <p>
+            Web: Monika Hubáčková<br /><a
+              href="https://www.monikavisuals.eu"
+              target="_blank"
+              >www.monikavisuals.eu</a
+            >
+          </p>
+        </div>
+        <a></a>
+        <div class="footer-logo">
+          <a href="#top">
+            <img src="logo-tdb.svg" alt="TDB Logo" />
+          </a>
+        </div>
+      </div>
+    </footer>
+
     <script>
       const targetDate = new Date("2026-06-27T07:30:00").getTime();
 
@@ -234,49 +256,63 @@
       setInterval(updateCountdown, 1000);
     </script>
     <script>
-      const track = document.getElementById("carouselTrack");
-      const viewport = document.getElementById("carouselViewport");
+      document.addEventListener("DOMContentLoaded", () => {
+        const track = document.getElementById("carouselTrack");
+        const viewport = document.getElementById("carouselViewport");
 
-      let isDown = false;
-      let startX;
-      let scrollLeft;
-      let x = 0; // Aktuální pozice posunu
-      let speed = 0.4; // Rychlost automatického posunu
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+        let x = 0;
+        let speed = 0.4;
 
-      // Automatický posun
-      function animate() {
-        if (!isDown) {
-          x -= speed;
-          // Reset pro nekonečný efekt (upravte číslo podle šířky obsahu)
-          if (Math.abs(x) >= track.offsetWidth / 2) {
-            x = 0;
+        function animate() {
+          if (!isDown) {
+            x -= speed;
+            // Reset na začátek, když dojede do poloviny (protože máme kopie)
+            if (Math.abs(x) >= track.scrollWidth / 2) {
+              x = 0;
+            }
+            track.style.transform = `translateX(${x}px)`;
           }
-          track.style.transform = `translateX(${x}px)`;
+          requestAnimationFrame(animate);
         }
-        requestAnimationFrame(animate);
-      }
 
-      // Události myši
-      viewport.addEventListener("mousedown", (e) => {
-        isDown = true;
-        startX = e.pageX - track.offsetLeft;
-        scrollLeft = x;
+        // Funkce pro začátek pohybu (Myš i Dotyk)
+        const start = (e) => {
+          isDown = true;
+          startX = (e.pageX || e.touches[0].pageX) - track.offsetLeft;
+          scrollLeft = x;
+        };
+
+        // Funkce pro konec pohybu
+        const end = () => {
+          isDown = false;
+        };
+
+        // Funkce pro pohyb
+        const move = (e) => {
+          if (!isDown) return;
+          e.preventDefault();
+          const xPos = (e.pageX || e.touches[0].pageX) - track.offsetLeft;
+          const walk = xPos - startX;
+          x = scrollLeft + walk;
+          track.style.transform = `translateX(${x}px)`;
+        };
+
+        // Event Listenery pro myš
+        viewport.addEventListener("mousedown", start);
+        window.addEventListener("mouseup", end);
+        viewport.addEventListener("mousemove", move);
+
+        // Event Listenery pro dotyk (mobily)
+        viewport.addEventListener("touchstart", start);
+        viewport.addEventListener("touchend", end);
+        viewport.addEventListener("touchmove", move);
+
+        // Spuštění
+        animate();
       });
-
-      viewport.addEventListener("mouseleave", () => (isDown = false));
-      viewport.addEventListener("mouseup", () => (isDown = false));
-
-      viewport.addEventListener("mousemove", (e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        const xPos = e.pageX - track.offsetLeft;
-        const walk = xPos - startX;
-        x = scrollLeft + walk;
-        track.style.transform = `translateX(${x}px)`;
-      });
-
-      // Spuštění animace
-      animate();
     </script>
   </body>
 </html>
