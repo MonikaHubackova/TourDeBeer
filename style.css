@@ -312,6 +312,20 @@ nav a:hover::after {
   line-height: 1.4;
 }
 
+.sponzori-kontakt {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.kontakt-ikona {
+    display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 18px;
+  height: 18px;
+}
+
 /* === ROZLOŽENÍ STRÁNKY === */
 .info-layout {
   display: grid;
