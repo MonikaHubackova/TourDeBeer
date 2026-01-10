@@ -117,15 +117,13 @@ nav a:hover::after {
   }
 
   .hero-postava {
-    max-height: 180px;
-    margin-bottom: 10px;
+    max-height: 200px;
   }
 }
 
 @media (max-width: 480px) {
   .hero-postava {
-    max-height: 150px;
-    margin-bottom: 10px;
+    max-height: 180px;
   }
 }
 
@@ -679,3 +677,4 @@ footer {
     text-align: center;
   }
 }
+
