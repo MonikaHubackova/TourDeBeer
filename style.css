@@ -73,7 +73,7 @@ nav a:hover::after {
 
 .hero {
   position: relative;
-  height: 90vh;
+  height: 60vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -90,12 +90,10 @@ nav a:hover::after {
   align-items: center;
   gap: 20px;
   width: 100%;
-  padding: 0 20px;
-  padding-bottom: 100px;
 }
 
 .hero-postava {
-  max-height: 450px;
+  max-height: 30vh;
   width: auto;
 }
 
@@ -103,6 +101,7 @@ nav a:hover::after {
   display: flex;
   flex-direction: column;
   max-width: 600px; /* Aby nápis nebyl moc široký */
+  max-height: 40vh;
   width: auto;
 }
 
@@ -131,7 +130,7 @@ nav a:hover::after {
 }
 
 .countdown {
-  z-index: 6966;
+  z-index: 100;
   background-color: #1f1f1f;
   color: #f39c12;
 
@@ -155,10 +154,11 @@ nav a:hover::after {
 
 .cas {
   display: flex;
-  align-items: baseline; /* zarovná texty hezky k sobě */
+  align-items: baseline;
   gap: 8px;
   justify-content: center;
-  transform: translateY(-6px);
+  margin-top: -4px;
+  padding-bottom: 6px;
 }
 
 .cislo {
@@ -195,7 +195,7 @@ nav a:hover::after {
 
 .info-kolecka {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 40px;
 
   margin: 30px auto;
@@ -207,7 +207,7 @@ nav a:hover::after {
   aspect-ratio: 1 / 1; /* drží kruh */
   width: 100%;
   max-width: 220px;
-  border-radius: 50%;
+  border-radius: 20%;
   border: 2px solid #e5e5e5;
 
   display: flex;
@@ -244,24 +244,6 @@ nav a:hover::after {
   font-size: 22px;
   font-weight: 700;
   color: #f39c12;
-}
-
-/* === RESPONZIVITA === */
-@media (max-width: 1000px) {
-  .info-kolecka {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 500px) {
-  .info-kolecka {
-    grid-template-columns: 1fr;
-  }
-
-  .kolecko {
-    max-width: 280px;
-    margin: 0 auto;
-  }
 }
 
 .sponzori-galerie {
@@ -319,7 +301,7 @@ nav a:hover::after {
 }
 
 .kontakt-ikona {
-    display: flex;
+  display: flex;
   align-items: center;
   gap: 8px;
   width: 18px;
@@ -397,6 +379,22 @@ nav a:hover::after {
   height: 450px;
   border: none;
 }
+
+/*
+.mapa::after {
+  content: "Pro zoom mapy držte CTRL + kolečko";
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 6px 12px;
+  font-size: 14px;
+  border-radius: 4px;
+  pointer-events: none;
+}
+*/
 
 /* === RESPONZIVITA === */
 @media (max-width: 900px) {
@@ -504,8 +502,8 @@ nav a:hover::after {
 .carousel-viewport {
   overflow: hidden;
   cursor: grab;
-  user-select: none; /* Zabraní označování textu při tažení */
-  padding: 20px 0;
+  user-select: none;
+  padding-bottom: 80px;
 }
 
 .carousel-viewport:active {
@@ -584,15 +582,16 @@ nav a:hover::after {
 
 /* --- PATIČKA (FOOTER) --- */
 footer {
-  background-color: #f39c12; /* Oranžová barva webu */
-  color: white;
-  padding-bottom: 80px;
+  background-color: #f39c12;
+  color: #ffffff;
+  padding-bottom: 20px;
+
   padding-top: 30px;
 }
 
 .footer-obsah {
   display: flex;
-  justify-content: space-between; /* Text vlevo, logo vpravo */
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -627,5 +626,56 @@ footer {
     flex-direction: column-reverse; /* Logo nahoře, text pod ním */
     text-align: center;
     gap: 40px;
+  }
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 28px;
+  height: 3px;
+  background: white;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  nav {
+    z-index: 1000;
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    background: #f39c12;
+    transform: translateY(-140%);
+    transition: 0.3s;
+  }
+
+  nav.open {
+    transform: translateY(0);
+  }
+
+  nav ul {
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .hero-obsah {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-obsah {
+    flex-direction: column-reverse;
+    text-align: center;
   }
 }

@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,27 +8,33 @@
     href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap"
     rel="stylesheet"
   />
-  <link rel="icon" type="image/x-icon" href="logo-tdb.svg">
+  <link rel="icon" type="image/x-icon" href="logo-tdb.svg" />
 
-  <title>Sponzoři</title>
+  <title>TourDeBeer | Sponzoři</title>
 </head>
 <body>
   <header>
     <div class="container menu-rozlozeni">
       <div class="logo">
         <a href="index.html">
-          <img src="logo-tdb.svg" alt="Logo-TDB" height="50px" />
+          <img src="logo-tdb.svg" alt="TDB Logo" height="50px" />
         </a>
       </div>
 
-      <nav>
+      <nav id="nav">
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="info.html">Tour Info</a></li>
           <li><a href="sponzori.html">Sponzoři</a></li>
           <li><a href="#">Galerie</a></li>
+          <li><a href="mapa.html">Mapa</a></li>
         </ul>
       </nav>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
   </header>
   <main class="container">
@@ -40,7 +45,7 @@
         <p>Generální sponzor</p>
       </a>
 
-      <a href="https://www.korundok.cz" target="_blank" class="sponzor-karta">
+      <a class="sponzor-karta">
         <img src="02-korund.svg" alt="Korund" />
         <p>
           Montáž ocelových konstrukcí<br />
@@ -93,7 +98,7 @@
       >
         <img src="07-mline.svg" alt="Mline" />
         <p>
-          <strong>Pavel Žůrek - Mline</strong>
+          <strong>Pavel Žůrek - Mline</strong><br />
           Vestavěné skříně a šatní systémy na míru
         </p>
       </a>
@@ -191,7 +196,7 @@
       </a>
 
       <a
-        href="www.cyklosportslavicin.cz"
+        href="http://www.cyklosportslavicin.cz"
         target="_blank"
         class="sponzor-karta sponzor-karta-vetsi"
       >
@@ -201,6 +206,19 @@
           763 21 Slavičín<br />
           tel: 728 728 956<br />
           cyklosportslavicin@seznam.cz
+        </p>
+      </a>
+
+      <a
+        href="http://www.monikavisuals.eu/"
+        target="_blank"
+        class="sponzor-karta"
+      >
+        <img src="69-monika.svg" alt="Monika Visuals" />
+        <p>
+          <strong>Monika Hubáčková</strong><br />
+          Grafický design<br />
+          Tvorba tiskovin, online grafiky, webů a další
         </p>
       </a>
 
@@ -324,14 +342,18 @@
         <img src="30-obec-brezova.svg" alt="Obec Březová" />
       </a>
 
-      <a href="https://www.luxoa.cz/" target="_blank" class="sponzor-karta">
+      <a
+        href="https://www.luxoa.cz/"
+        target="_blank"
+        class="sponzor-karta sponzor-karta-vetsi"
+      >
         <img src="31-luxova.svg" alt="Luxoa" />
       </a>
 
       <a
         href="https://www.facebook.com/KovarstviTrunkat"
         target="_blank"
-        class="sponzor-karta"
+        class="sponzor-karta sponzor-karta-vetsi"
       >
         <img src="32-trunkat.svg" alt="Tadeáš Trunkát" />
         <p>
@@ -341,7 +363,7 @@
         </p>
       </a>
 
-      <a class="sponzor-karta">
+      <a class="sponzor-karta sponzor-karta-vetsi">
         <img src="33-namostarne.svg" alt="Hospůdka Na Moštárně" />
         <p>
           Lada Biernátová<br />
@@ -429,7 +451,7 @@
       </a>
 
       <a
-        href="http://www.cukrarna.asp2.cz/"
+        href="https://cukrarnausarmanu.cz/"
         target="_blank"
         class="sponzor-karta"
       >
@@ -515,7 +537,11 @@
         <img src="57-vranik.svg" alt="Pneu Vraník" />
       </a>
 
-      <a href="www.polasek-holesov.cz" target="_blank" class="sponzor-karta">
+      <a
+        href="http://www.polasek-holesov.cz"
+        target="_blank"
+        class="sponzor-karta"
+      >
         <img src="58-polasek.svg" alt="Polášek" />
       </a>
 
@@ -616,4 +642,15 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const hamburger = document.getElementById("hamburger");
+      const nav = document.querySelector("nav");
+
+      hamburger.addEventListener("click", () => {
+        nav.classList.toggle("open");
+      });
+    });
+  </script>
 </body>

@@ -1,0 +1,75 @@
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="icon" type="image/x-icon" href="logo-tdb.svg" />
+  <title>TourDeBeer | Mapa</title>
+</head>
+<body>
+  <header>
+    <div class="container menu-rozlozeni">
+      <div class="logo">
+        <a href="index.html">
+          <img src="logo-tdb.svg" alt="TDB Logo" height="50px" />
+        </a>
+      </div>
+
+      <nav id="nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="info.html">Tour Info</a></li>
+          <li><a href="sponzori.html">Sponzoři</a></li>
+          <li><a href="#">Galerie</a></li>
+          <li><a href="mapa.html">Mapa</a></li>
+        </ul>
+      </nav>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <section class="mapa">
+    <iframe src="https://mapy.com/s/jotolaluse" loading="lazy"></iframe>
+  </section>
+
+  <footer>
+    <div class="container footer-obsah">
+      <div class="footer-text">
+        <p>© TDB 2002 – 2026<br />Tour de Beer Team</p>
+        <p>
+          Web: Monika Hubáčková<br /><a
+            href="https://www.monikavisuals.eu"
+            target="_blank"
+            >www.monikavisuals.eu</a
+          >
+        </p>
+      </div>
+      <a></a>
+      <div class="footer-logo">
+        <a href="#top">
+          <img src="logo-tdb.svg" alt="TDB Logo" />
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const hamburger = document.getElementById("hamburger");
+      const nav = document.querySelector("nav");
+
+      hamburger.addEventListener("click", () => {
+        nav.classList.toggle("open");
+      });
+    });
+  </script>
+</body>

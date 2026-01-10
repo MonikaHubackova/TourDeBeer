@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cs">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,24 +10,32 @@
       href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap"
       rel="stylesheet"
     />
-     <link rel="icon" type="image/x-icon" href="logo-tdb.svg">
+    <link rel="icon" type="image/x-icon" href="logo-tdb.svg" />
     <title>TourDeBeer</title>
   </head>
   <body>
     <header>
       <div class="container menu-rozlozeni">
         <div class="logo">
-          <img src="logo-tdb.svg" alt="Logo-TDB" height="50px" />
+          <a href="index.html">
+            <img src="logo-tdb.svg" alt="TDB Logo" height="50px" />
+          </a>
         </div>
 
-        <nav>
+        <nav id="nav">
           <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="info.html">Tour Info</a></li>
             <li><a href="sponzori.html">Sponzoři</a></li>
             <li><a href="#">Galerie</a></li>
+            <li><a href="mapa.html">Mapa</a></li>
           </ul>
         </nav>
+        <div class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
     </header>
     <section class="hero">
@@ -204,12 +212,8 @@
       </div>
     </section>
 
-    <section class="mapa">
-      <iframe src="https://mapy.com/s/jotolaluse" loading="lazy"></iframe>
-    </section>
-
     <footer>
-      <div class="container footer-obsah">
+      <div class="container footer-obsah" style="padding-bottom: 80px">
         <div class="footer-text">
           <p>© TDB 2002 – 2026<br />Tour de Beer Team</p>
           <p>
@@ -230,7 +234,7 @@
     </footer>
 
     <script>
-      const targetDate = new Date("2026-06-27T07:30:00").getTime();
+      const targetDate = new Date(2026, 5, 27, 7, 30, 0).getTime();
 
       function updateCountdown() {
         const now = new Date().getTime();
@@ -251,11 +255,16 @@
         document.getElementById("hours").textContent = hours;
         document.getElementById("minutes").textContent = minutes;
         document.getElementById("seconds").textContent = seconds;
+        if (difference <= 0) {
+          document.querySelector(".countdown").style.display = "none";
+          return;
+        }
       }
 
       updateCountdown();
       setInterval(updateCountdown, 1000);
     </script>
+
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const track = document.getElementById("carouselTrack");
@@ -270,7 +279,6 @@
         function animate() {
           if (!isDown) {
             x -= speed;
-            // Reset na začátek, když dojede do poloviny (protože máme kopie)
             if (Math.abs(x) >= track.scrollWidth / 2) {
               x = 0;
             }
@@ -279,19 +287,16 @@
           requestAnimationFrame(animate);
         }
 
-        // Funkce pro začátek pohybu (Myš i Dotyk)
         const start = (e) => {
           isDown = true;
           startX = (e.pageX || e.touches[0].pageX) - track.offsetLeft;
           scrollLeft = x;
         };
 
-        // Funkce pro konec pohybu
         const end = () => {
           isDown = false;
         };
 
-        // Funkce pro pohyb
         const move = (e) => {
           if (!isDown) return;
           e.preventDefault();
@@ -301,18 +306,26 @@
           track.style.transform = `translateX(${x}px)`;
         };
 
-        // Event Listenery pro myš
         viewport.addEventListener("mousedown", start);
         window.addEventListener("mouseup", end);
         viewport.addEventListener("mousemove", move);
 
-        // Event Listenery pro dotyk (mobily)
         viewport.addEventListener("touchstart", start);
         viewport.addEventListener("touchend", end);
         viewport.addEventListener("touchmove", move);
 
-        // Spuštění
         animate();
+      });
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const hamburger = document.getElementById("hamburger");
+        const nav = document.querySelector("nav");
+
+        hamburger.addEventListener("click", () => {
+          nav.classList.toggle("open");
+        });
       });
     </script>
   </body>
