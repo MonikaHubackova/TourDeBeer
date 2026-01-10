@@ -199,6 +199,8 @@ nav a:hover::after {
   margin: 30px auto;
   max-width: 1200px;
   padding: 0 20px;
+
+   justify-items: center;
 }
 
 .kolecko {
@@ -677,4 +679,5 @@ footer {
     text-align: center;
   }
 }
+
 
