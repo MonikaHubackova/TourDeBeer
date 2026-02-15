@@ -9,7 +9,7 @@
     rel="stylesheet"
   />
   <link rel="icon" type="image/x-icon" href="logo-tdb.svg" />
-  <title>TourDeBeer | Mapa</title>
+  <title>TourDeBeer | Galerie</title>
 </head>
 <body>
   <header>
@@ -36,10 +36,36 @@
       </div>
     </div>
   </header>
+  <div class="galerie">
+    <section class="container galerie">
+      <h1>Galerie</h1>
 
-  <section class="mapa">
-    <iframe src="https://mapy.com/s/jotolaluse" loading="lazy"></iframe>
-  </section>
+      <h2>2025</h2>
+      <div class="galerie-grid">
+        <img src="2025-25.jpg" alt="" />
+        <img src="2025-27.jpg" alt="" />
+        <img src="2025-29.jpg" alt="" />
+        <img src="2025-36.jpg" alt="" />
+        <img src="2025-39.jpg" alt="" />
+        <img src="2025-46.jpg" alt="" />
+        <img src="2025-48.jpg" alt="" />
+        <img src="2025-51.jpg" alt="" />
+      </div>
+
+      <h2>2024</h2>
+      <div class="galerie-grid">
+        <img src="2004-03.jpg" alt="" />
+        <img src="2004-06.jpg" alt="" />
+        <img src="2004-10.jpg" alt="" />
+        <img src="2004-13.jpg" alt="" />
+      </div>
+    </section>
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <img id="lightbox-img" />
+  </div>
 
   <footer>
     <div class="container footer-obsah">
@@ -63,13 +89,26 @@
   </footer>
 
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const hamburger = document.getElementById("hamburger");
-      const nav = document.querySelector("nav");
+    const images = document.querySelectorAll(".galerie-grid img");
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
 
-      hamburger.addEventListener("click", () => {
-        nav.classList.toggle("open");
+    images.forEach((img) => {
+      img.addEventListener("click", () => {
+        lightbox.classList.add("open");
+        lightboxImg.src = img.src;
       });
+    });
+
+    lightbox.addEventListener("click", () => {
+      lightbox.classList.remove("open");
+    });
+
+    // ESC zavření
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        lightbox.classList.remove("open");
+      }
     });
   </script>
 </body>

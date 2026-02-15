@@ -648,6 +648,75 @@ nav a:hover::after {
   }
 }
 
+/* --------------------
+        Galerie
+--------------------- */
+
+.galerie {
+  padding-bottom: 50px;
+}
+
+.galerie h1 {
+  margin-top: 40px;
+}
+
+.galerie h2 {
+  margin: 40px 0 20px;
+}
+
+.galerie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.galerie-grid img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.galerie-grid img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* --------------------
+        LIGHTBOX
+--------------------- */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 3000;
+  padding: 20px;
+}
+
+.lightbox.open {
+  display: flex;
+}
+
+.lightbox img {
+  max-width: 100%;
+  max-height: 90vh;
+  border-radius: 6px;
+}
+
+/* Mobil */
+
+@media (max-width: 600px) {
+  .galerie-grid img {
+    height: 160px;
+  }
+}
+
 /*----------------------------
            PATIČKA
   ----------------------------*/
