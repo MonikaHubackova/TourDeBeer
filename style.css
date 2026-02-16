@@ -141,8 +141,8 @@ nav a:hover::after {
   flex-direction: column;
   justify-content: center;
 
-  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)),
-    url("brezova.jpg");
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url("brezova.jpg");
   background-size: cover;
   background-position: center;
 }
@@ -495,13 +495,15 @@ nav a:hover::after {
   text-align: center;
   text-decoration: none;
   color: black;
-  border-radius: 4px;
+  border-radius: 6px;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 12px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
   break-inside: avoid;
 }
 
@@ -656,17 +658,13 @@ nav a:hover::after {
   padding-bottom: 50px;
 }
 
-.galerie h1 {
-  margin-top: 40px;
-}
-
 .galerie h2 {
   margin: 40px 0 20px;
 }
 
 .galerie-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
 }
 
@@ -674,14 +672,86 @@ nav a:hover::after {
   width: 100%;
   height: 200px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .galerie-grid img:hover {
   transform: scale(1.03);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.galerie-externi {
+  display: flex;
+  justify-content: center;
+  margin: 60px 0;
+}
+
+/* --------------------
+        BUTTON
+--------------------- */
+
+.btn {
+  position: relative;
+  background: #f39c12;
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 15px 40px;
+  border-radius: 6px;
+  overflow: hidden;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -40%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transform: rotate(20deg);
+  animation: lesk 3s infinite;
+}
+
+.btn:hover {
+  transform: scale(1.07);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes lesk {
+  0% {
+    left: -40%;
+  }
+  60% {
+    left: 140%;
+  }
+  100% {
+    left: 140%;
+  }
+}
+
+/* Mobil */
+
+@media (max-width: 600px) {
+  .galerie-btn {
+    font-size: 20px;
+    padding: 14px 40px;
+  }
 }
 
 /* --------------------
@@ -709,9 +779,16 @@ nav a:hover::after {
   border-radius: 6px;
 }
 
-/* Mobil */
+@media (max-width: 900px) {
+  .galerie-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
 
 @media (max-width: 600px) {
+  .galerie-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
   .galerie-grid img {
     height: 160px;
   }
