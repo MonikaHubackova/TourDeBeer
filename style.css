@@ -13,6 +13,12 @@ body {
   padding: 0;
   font-family: "Source Sans 3", sans-serif;
   background-color: white;
+  min-height: 100vh;
+}
+
+header,
+footer {
+  flex-shrink: 0;
 }
 
 header {
@@ -25,6 +31,10 @@ header {
   width: 100%;
   margin: 0 auto;
   padding: 20px;
+}
+
+.hlavni-obsah {
+  flex: 1;
 }
 
 /*----------------------------
@@ -136,57 +146,98 @@ nav a:hover::after {
 
 .hero {
   position: relative;
-  height: 60vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  background-image:
-    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url("brezova.jpg");
-  background-size: cover;
-  background-position: center;
-}
-
-.hero-obsah {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
+  background-color: #1f1f1f;
   width: 100%;
-}
 
-.hero-postava {
-  max-height: 30vh;
-  width: auto;
-}
-
-.hero-napis {
+  min-height: 60vh;
+  max-height: 900px;
   display: flex;
-  flex-direction: column;
-  max-width: 600px;
-  max-height: 40vh;
-  width: auto;
+  align-items: center;
+  overflow: hidden;
+  z-index: 0;
 }
 
-@media (max-width: 768px) {
-  .hero-obsah {
-    flex-direction: column;
-    text-align: center;
-  }
+.hero-background {
+  position: absolute;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  width: 55%;
+  max-width: 70%;
+  height: 100%;
+  z-index: 2;
+}
 
+.hero-background img {
+  z-index: 99;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-container-flex {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: flex-end;
+  pointer-events: none;
+}
+
+.hero-content {
+  width: 65%;
+  pointer-events: auto;
+  z-index: 10;
+}
+
+.hero-main-img {
+  max-width: clamp(450px, 45vw, 800px);
+
+  display: block;
+  height: auto;
+}
+
+.mobile {
+  display: none;
+}
+
+@media (max-width: 900px) {
   .hero {
-    height: auto;
-    padding: 30px 0;
+    min-height: 50vh;
   }
 
-  .hero-postava {
-    max-height: 200px;
+  .hero-background {
+    width: 100%;
+    max-width: none;
+    opacity: 0.3;
   }
-}
+  .hero-background img {
+    object-position: center;
+    width: 100%;
+    object-fit: cover;
+  }
 
-@media (max-width: 480px) {
-  .hero-postava {
-    max-height: 180px;
+  .desktop {
+    display: none;
+  }
+
+  .mobile {
+    display: block;
+  }
+
+  .hero-container-flex {
+    justify-content: center;
+  }
+
+  .hero-content {
+    width: 95%;
+    display: flex;
+    justify-content: center;
+    padding: 20px 20px 20px;
+  }
+
+  .hero-main-img {
+    max-width: 100%;
+    margin: 0 auto;
   }
 }
 
