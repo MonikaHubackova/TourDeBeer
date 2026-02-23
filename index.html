@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="cs">
   <head>
     <meta charset="UTF-8" />
@@ -38,10 +38,25 @@
         </div>
       </div>
     </header>
+
     <section class="hero">
-      <div class="container hero-obsah">
-        <img src="cyklista.svg" alt="Cyklista" class="hero-postava" />
-        <img src="napis1.svg" alt="Tour de Beer" class="hero-napis" />
+      <div class="hero-background">
+        <img src="brezova.png" alt="Letecký pohled" />
+      </div>
+
+      <div class="container hero-container-flex">
+        <div class="hero-content">
+          <img
+            src="napis-pc.svg"
+            alt="Tour de Beer"
+            class="hero-main-img desktop"
+          />
+          <img
+            src="napis-phone.svg"
+            alt="Tour de Beer"
+            class="hero-main-img mobile"
+          />
+        </div>
       </div>
     </section>
 
@@ -244,10 +259,10 @@
 
         const days = Math.floor(difference / (1000 * 60 * 60 * 24));
         const hours = Math.floor(
-          (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+          (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
         );
         const minutes = Math.floor(
-          (difference % (1000 * 60 * 60)) / (1000 * 60)
+          (difference % (1000 * 60 * 60)) / (1000 * 60),
         );
         const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
