@@ -311,29 +311,6 @@
     </script>
 
     <script>
-      async function loadLayout() {
-        const headerRes = await fetch("header.html");
-        const headerData = await headerRes.text();
-        document.getElementById("header-placeholder").innerHTML = headerData;
-
-        const footerRes = await fetch("footer.html");
-        const footerData = await footerRes.text();
-        document.getElementById("footer-placeholder").innerHTML = footerData;
-
-        const hamburger = document.getElementById("hamburger");
-        const nav = document.getElementById("nav");
-
-        if (hamburger && nav) {
-          hamburger.addEventListener("click", () => {
-            nav.classList.toggle("open");
-          });
-        }
-      }
-
-      loadLayout();
-    </script>
-
-    <script>
       function loadElement(id, url) {
         fetch(url)
           .then((response) => response.text())
@@ -347,3 +324,4 @@
     </script>
   </body>
 </html>
+
