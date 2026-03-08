@@ -85,6 +85,22 @@ nav a:hover::after {
   width: 100%;
 }
 
+.btn-registrace {
+  color: #f39c12;
+  background-color: #ffffff;
+  border: 2px solid white;
+  padding: 5px 15px;
+  border-radius: 6px;
+  text-decoration: none;
+  display: inline-block; /* Toto umožní transformaci */
+  transition: transform 0.3s ease;
+  margin-top: -5px;
+}
+
+.btn-registrace:hover {
+  transform: scale(1.02);
+}
+
 /*----------------------------
          HAMBURGER MENU
   ----------------------------*/

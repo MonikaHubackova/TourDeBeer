@@ -204,26 +204,7 @@
       </div>
     </section>
 
-    <footer>
-      <div class="container footer-obsah" style="padding-bottom: 80px">
-        <div class="footer-text">
-          <p>© TDB 2002 – 2026<br />Tour de Beer Team</p>
-          <p>
-            Web: Monika Hubáčková<br /><a
-              href="https://www.monikavisuals.eu"
-              target="_blank"
-              >www.monikavisuals.eu</a
-            >
-          </p>
-        </div>
-        <a></a>
-        <div class="footer-logo">
-          <a href="#top">
-            <img src="logo-tdb.svg" alt="TDB Logo" />
-          </a>
-        </div>
-      </div>
-    </footer>
+    <div id="footer-placeholder"></div>
 
     <script>
       const targetDate = new Date(2026, 5, 27, 7, 30, 0).getTime();
@@ -313,12 +294,10 @@
     <script>
       async function inicializujWeb() {
         try {
-          // Načtení hlavičky
           const response = await fetch("header.html");
           const htmlText = await response.text();
           document.getElementById("header-placeholder").innerHTML = htmlText;
 
-          // Aktivace hamburgeru (POZOR: musí to být uvnitř této funkce!)
           const hamburger = document.getElementById("hamburger");
           const nav = document.getElementById("nav");
 
@@ -328,7 +307,6 @@
             });
           }
 
-          // Načtení patičky
           const footerRes = await fetch("footer.html");
           const footerText = await footerRes.text();
           document.getElementById("footer-placeholder").innerHTML = footerText;

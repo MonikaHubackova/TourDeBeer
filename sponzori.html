@@ -13,30 +13,8 @@
   <title>TourDeBeer | Sponzoři</title>
 </head>
 <body>
-  <header>
-    <div class="container menu-rozlozeni">
-      <div class="logo">
-        <a href="index.html">
-          <img src="logo-tdb.svg" alt="TDB Logo" height="50px" />
-        </a>
-      </div>
+  <div id="header-placeholder"></div>
 
-      <nav id="nav">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="info.html">Tour Info</a></li>
-          <li><a href="sponzori.html">Sponzoři</a></li>
-          <li><a href="galerie.html">Galerie</a></li>
-          <li><a href="mapa.html">Mapa</a></li>
-        </ul>
-      </nav>
-      <div class="hamburger" id="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
-  </header>
   <main class="container">
     <h1 class="nadpis">Naši sponzoři</h1>
     <section class="sponzori-galerie">
@@ -622,35 +600,32 @@
       </a>
     </section>
   </main>
-  <footer>
-    <div class="container footer-obsah">
-      <div class="footer-text">
-        <p>© TDB 2002 – 2026<br />Tour de Beer Team</p>
-        <p>
-          Web: Monika Hubáčková<br /><a
-            href="https://www.monikavisuals.eu"
-            target="_blank"
-            >www.monikavisuals.eu</a
-          >
-        </p>
-      </div>
-      <a></a>
-      <div class="footer-logo">
-        <a href="#top">
-          <img src="logo-tdb.svg" alt="TDB Logo" />
-        </a>
-      </div>
-    </div>
-  </footer>
+  <div id="footer-placeholder"></div>
 
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const hamburger = document.getElementById("hamburger");
-      const nav = document.querySelector("nav");
+    async function inicializujWeb() {
+      try {
+        const response = await fetch("header.html");
+        const htmlText = await response.text();
+        document.getElementById("header-placeholder").innerHTML = htmlText;
 
-      hamburger.addEventListener("click", () => {
-        nav.classList.toggle("open");
-      });
-    });
+        const hamburger = document.getElementById("hamburger");
+        const nav = document.getElementById("nav");
+
+        if (hamburger && nav) {
+          hamburger.addEventListener("click", () => {
+            nav.classList.toggle("open");
+          });
+        }
+
+        const footerRes = await fetch("footer.html");
+        const footerText = await footerRes.text();
+        document.getElementById("footer-placeholder").innerHTML = footerText;
+      } catch (error) {
+        console.error("Chyba při načítání:", error);
+      }
+    }
+
+    window.addEventListener("DOMContentLoaded", inicializujWeb);
   </script>
 </body>
