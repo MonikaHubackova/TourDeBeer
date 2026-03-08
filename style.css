@@ -764,6 +764,202 @@ nav a:hover::after {
   width: 100%;
 }
 
+/*----------------------------
+          REGISTRACE
+  ----------------------------*/
+
+.registrace-nadpis {
+  font-size: 32px;
+  font-weight: 800;
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+
+.registracni-form {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Dva sloupce */
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 18px;
+}
+
+.form-group label span {
+  color: red;
+  margin-left: 2px;
+}
+
+.label-info {
+  font-size: 13px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.registracni-form input[type="text"],
+.registracni-form input[type="email"],
+.registracni-form input[type="tel"],
+.registracni-form textarea {
+  background-color: #e0e0e0; /* Šedý podklad dle vzoru */
+  border: none;
+  padding: 15px;
+  font-family: inherit;
+  font-size: 16px;
+  border-radius: 6px;
+  width: 100%;
+}
+
+.registracni-form textarea {
+  height: 120px;
+  resize: vertical;
+}
+
+.full-width {
+  grid-column: span 2;
+}
+
+/* Checkbox */
+.form-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.form-checkbox input {
+  margin-top: 4px;
+}
+
+.form-submit {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  margin-bottom: 80px;
+}
+
+.odeslat-btn {
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  font-family: inherit;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.odeslat-btn:hover {
+  transform: scale(1.02);
+}
+
+.registracni-form input:valid,
+.registracni-form textarea:valid {
+  background-color: #eeeeee;
+}
+
+/* Responzivita pro mobily */
+@media (max-width: 600px) {
+  .form-grid {
+    grid-template-columns: 1fr; /* Na mobilu pod sebou */
+  }
+  .full-width {
+    grid-column: span 1;
+  }
+  .odeslat-btn {
+    width: 100%;
+  }
+}
+
+/*----------------------------
+          DĚKOVACÍ STRÁNKA
+  ----------------------------*/
+
+.diky-flex-kontejner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding: 0 20px;
+}
+
+.diky-obsah {
+  padding: 80px 0;
+  text-align: center;
+}
+
+.text-center {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.diky-obsah h1 {
+  font-size: 36px;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.platba-text {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.cislo-uctu {
+  font-size: 42px;
+  font-weight: 800;
+  margin: 0 0 30px 0;
+  letter-spacing: 1px;
+}
+
+.qr-info {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.tesime-se {
+  font-size: 22px;
+  font-weight: 700;
+  margin-top: 40px;
+}
+
+.diky-ilustrace img {
+  width: 350px;
+  height: auto;
+  display: block;
+}
+
+.diky-ilustrace img {
+  max-width: 350px;
+  height: auto;
+}
+
+/* Responzivita */
+@media (max-width: 600px) {
+  .cislo-uctu {
+    font-size: 30px;
+  }
+  .diky-ilustrace img {
+    max-width: 80%;
+  }
+}
+
 /* --------------------
         BUTTON
 --------------------- */
@@ -774,7 +970,7 @@ nav a:hover::after {
   color: white;
   text-decoration: none;
   font-size: 20px;
-  font-weight: 500;
+  font-weight: 600;
   padding: 15px 40px;
   border-radius: 6px;
   overflow: hidden;
@@ -782,7 +978,7 @@ nav a:hover::after {
   transition:
     transform 0.25s ease,
     box-shadow 0.25s ease;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
 }
 
 .btn::before {
