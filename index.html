@@ -311,17 +311,33 @@
     </script>
 
     <script>
-      function loadElement(id, url) {
-        fetch(url)
-          .then((response) => response.text())
-          .then((data) => {
-            document.getElementById(id).innerHTML = data;
-          });
+      async function inicializujWeb() {
+        try {
+          // Načtení hlavičky
+          const response = await fetch("header.html");
+          const htmlText = await response.text();
+          document.getElementById("header-placeholder").innerHTML = htmlText;
+
+          // Aktivace hamburgeru (POZOR: musí to být uvnitř této funkce!)
+          const hamburger = document.getElementById("hamburger");
+          const nav = document.getElementById("nav");
+
+          if (hamburger && nav) {
+            hamburger.addEventListener("click", () => {
+              nav.classList.toggle("open");
+            });
+          }
+
+          // Načtení patičky
+          const footerRes = await fetch("footer.html");
+          const footerText = await footerRes.text();
+          document.getElementById("footer-placeholder").innerHTML = footerText;
+        } catch (error) {
+          console.error("Chyba při načítání:", error);
+        }
       }
 
-      loadElement("header-placeholder", "header.html");
-      loadElement("footer-placeholder", "footer.html");
+      window.addEventListener("DOMContentLoaded", inicializujWeb);
     </script>
   </body>
 </html>
-

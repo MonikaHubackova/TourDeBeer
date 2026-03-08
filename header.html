@@ -20,40 +20,4 @@
       <span></span>
     </div>
   </div>
-  </header>
-
-  <script>
-  // Funkce, která vše zařídí v jednom kroku
-  async function inicializujWeb() {
-    try {
-      // 1. STÁHNOUT HLAVIČKU
-      const response = await fetch("header.html");
-      const htmlText = await response.text();
-      document.getElementById("header-placeholder").innerHTML = htmlText;
-
-      // 2. AKTIVOVAT HAMBURGER (až teď existuje v HTML!)
-      const hamburger = document.getElementById("hamburger");
-      const nav = document.getElementById("nav");
-
-      // Přidáme kontrolu, jestli tam ty prvky opravdu jsou
-      if (hamburger && nav) {
-        hamburger.addEventListener("click", () => {
-          nav.classList.toggle("open");
-        });
-      }
-
-      // 3. (VOLITELNÉ) STÁHNOUT PATIČKU
-      const footerRes = await fetch("footer.html");
-      const footerText = await footerRes.text();
-      document.getElementById("footer-placeholder").innerHTML = footerText;
-
-    } catch (error) {
-      console.error("Chyba při načítání layoutu:", error);
-    }
-  }
-
-  // Spustit hned po načtení stránky
-  window.addEventListener('DOMContentLoaded', inicializujWeb);
-</script>
-
-
+</header>
