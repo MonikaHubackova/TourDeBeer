@@ -14,30 +14,7 @@
     <title>TourDeBeer</title>
   </head>
   <body>
-    <header>
-      <div class="container menu-rozlozeni">
-        <div class="logo">
-          <a href="index.html">
-            <img src="logo-tdb.svg" alt="TDB Logo" height="50px" />
-          </a>
-        </div>
-
-        <nav id="nav">
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="info.html">Tour Info</a></li>
-            <li><a href="sponzori.html">Sponzoři</a></li>
-            <li><a href="galerie.html">Galerie</a></li>
-            <li><a href="mapa.html">Mapa</a></li>
-          </ul>
-        </nav>
-        <div class="hamburger" id="hamburger">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
-    </header>
+    <div id="header-placeholder"></div>
 
     <section class="hero">
       <div class="hero-background">
@@ -334,14 +311,39 @@
     </script>
 
     <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const hamburger = document.getElementById("hamburger");
-        const nav = document.querySelector("nav");
+      async function loadLayout() {
+        const headerRes = await fetch("header.html");
+        const headerData = await headerRes.text();
+        document.getElementById("header-placeholder").innerHTML = headerData;
 
-        hamburger.addEventListener("click", () => {
-          nav.classList.toggle("open");
-        });
-      });
+        const footerRes = await fetch("footer.html");
+        const footerData = await footerRes.text();
+        document.getElementById("footer-placeholder").innerHTML = footerData;
+
+        const hamburger = document.getElementById("hamburger");
+        const nav = document.getElementById("nav");
+
+        if (hamburger && nav) {
+          hamburger.addEventListener("click", () => {
+            nav.classList.toggle("open");
+          });
+        }
+      }
+
+      loadLayout();
+    </script>
+
+    <script>
+      function loadElement(id, url) {
+        fetch(url)
+          .then((response) => response.text())
+          .then((data) => {
+            document.getElementById(id).innerHTML = data;
+          });
+      }
+
+      loadElement("header-placeholder", "header.html");
+      loadElement("footer-placeholder", "footer.html");
     </script>
   </body>
 </html>
