@@ -2,7 +2,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googs.com" />
+  <link rel="preconnect" href="fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap"
@@ -25,6 +25,8 @@
         class="registracni-form"
         id="registraceForm"
       >
+        <input type="hidden" name="_color" value="f39c12" />
+        <input type="hidden" name="_language" value="cs" />
         <input
           type="hidden"
           name="_subject"
@@ -32,22 +34,15 @@
         />
         <input type="hidden" name="_captcha" value="false" />
         <input type="hidden" name="_template" value="table" />
-        <input type="hidden" name="_color" value="f39c12" />
-        <input
-          type="checkbox"
-          id="souhlas"
-          name="Souhlas"
-          value="ANO"
-          required
-        />
+
         <div class="form-grid">
           <div class="form-group">
             <label>Jméno<span>*</span></label>
-            <input type="text" name="Jmeno" required />
+            <input type="text" name="Jméno" required />
           </div>
           <div class="form-group">
             <label>Příjmení<span>*</span></label>
-            <input type="text" name="Prijmeni" required />
+            <input type="text" name="Příjmení" required />
           </div>
           <div class="form-group">
             <label>Telefon<span>*</span></label>
@@ -55,7 +50,7 @@
           </div>
           <div class="form-group">
             <label>E-mail<span>*</span></label>
-            <input type="email" name="Email" required />
+            <input type="email" name="E-mail" required />
           </div>
         </div>
 
@@ -65,7 +60,7 @@
             >(Pokud registrujete více lidí, tak jejich jména uveďte do
             poznámky)</span
           >
-          <textarea name="Poznamka"></textarea>
+          <textarea name="Poznámka"></textarea>
         </div>
 
         <div class="form-checkbox">
@@ -73,6 +68,7 @@
             type="checkbox"
             id="souhlas"
             name="Souhlas se startovným"
+            value="ANO"
             required
           />
           <label for="souhlas"
