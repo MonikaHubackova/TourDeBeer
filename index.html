@@ -291,31 +291,6 @@
       });
     </script>
 
-    <script>
-      async function inicializujWeb() {
-        try {
-          const response = await fetch("header.html");
-          const htmlText = await response.text();
-          document.getElementById("header-placeholder").innerHTML = htmlText;
-
-          const hamburger = document.getElementById("hamburger");
-          const nav = document.getElementById("nav");
-
-          if (hamburger && nav) {
-            hamburger.addEventListener("click", () => {
-              nav.classList.toggle("open");
-            });
-          }
-
-          const footerRes = await fetch("footer.html");
-          const footerText = await footerRes.text();
-          document.getElementById("footer-placeholder").innerHTML = footerText;
-        } catch (error) {
-          console.error("Chyba při načítání:", error);
-        }
-      }
-
-      window.addEventListener("DOMContentLoaded", inicializujWeb);
-    </script>
+    <script src="main.js"></script>
   </body>
 </html>

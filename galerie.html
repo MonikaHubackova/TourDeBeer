@@ -208,30 +208,60 @@
 
   <div id="footer-placeholder"></div>
 
+  <script src="main.js"></script>
   <script>
-    async function inicializujWeb() {
-      try {
-        const response = await fetch("header.html");
-        const htmlText = await response.text();
-        document.getElementById("header-placeholder").innerHTML = htmlText;
+    document.addEventListener("DOMContentLoaded", () => {
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImg = document.getElementById("lightbox-img");
+      const images = Array.from(document.querySelectorAll(".galerie-grid img"));
+      let currentIndex = 0;
 
-        const hamburger = document.getElementById("hamburger");
-        const nav = document.getElementById("nav");
+      // Funkce pro aktualizaci obrázku v lightboxu
+      const updateLightbox = (index) => {
+        currentIndex = index;
+        lightboxImg.src = images[currentIndex].src;
+      };
 
-        if (hamburger && nav) {
-          hamburger.addEventListener("click", () => {
-            nav.classList.toggle("open");
-          });
+      // Otevření lightboxu
+      images.forEach((img, index) => {
+        img.addEventListener("click", () => {
+          updateLightbox(index);
+          lightbox.classList.add("open");
+          document.body.style.overflow = "hidden";
+        });
+      });
+
+      // Funkce pro přepnutí na další/předchozí
+      const nextImage = () => {
+        let nextIdx = (currentIndex + 1) % images.length;
+        updateLightbox(nextIdx);
+      };
+
+      const prevImage = () => {
+        let prevIdx = (currentIndex - 1 + images.length) % images.length;
+        updateLightbox(prevIdx);
+      };
+
+      // Ovládání klávesnicí
+      document.addEventListener("keydown", (e) => {
+        if (!lightbox.classList.contains("open")) return;
+
+        if (e.key === "ArrowRight") nextImage();
+        if (e.key === "ArrowLeft") prevImage();
+        if (e.key === "Escape") {
+          lightbox.classList.remove("open");
+          document.body.style.overflow = "auto";
         }
+      });
 
-        const footerRes = await fetch("footer.html");
-        const footerText = await footerRes.text();
-        document.getElementById("footer-placeholder").innerHTML = footerText;
-      } catch (error) {
-        console.error("Chyba při načítání:", error);
-      }
-    }
-
-    window.addEventListener("DOMContentLoaded", inicializujWeb);
+      // Zavření kliknutím (mimo obrázek)
+      lightbox.addEventListener("click", (e) => {
+        // Pokud klikneš na pozadí (ne na samotný obrázek), zavře se to
+        if (e.target !== lightboxImg) {
+          lightbox.classList.remove("open");
+          document.body.style.overflow = "auto";
+        }
+      });
+    });
   </script>
 </body>
