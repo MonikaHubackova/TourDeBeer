@@ -903,14 +903,80 @@ nav a:hover::after {
           DĚKOVACÍ STRÁNKA
   ----------------------------*/
 
-.diky-flex-kontejner {
+/* Specifické styly pro platební bránu */
+.startovne-info {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.platba-instrukce {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.platebni-karta {
+  background-color: #f39c12; /* Oranžová barva TourDeBeer */
+  border-radius: 20px;
+  padding: 40px;
   display: flex;
   align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.cislo-uctu-velke {
+  font-size: clamp(30px, 5vw, 48px);
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.qr-kod-kontejner {
+  background-color: white;
+  padding: 15px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#qr-image {
+  width: 150px;
+  height: 150px;
+  margin-bottom: 5px;
+}
+
+.qr-popisek {
+  color: black;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Úprava ilustrace pod kartou */
+.diky-flex-kontejner {
+  display: flex;
+  align-items: center; /* Vertikální zarovnání na střed */
   justify-content: center;
-  gap: 40px;
-  margin-top: 50px;
+  gap: 20px;
+  margin-top: -80px; /* Větší záporný margin pro překrytí boxu */
+  z-index: 10;
+  position: relative;
+  pointer-events: none;
   margin-bottom: 50px;
-  padding: 0 20px;
+}
+
+@media (max-width: 768px) {
+  .platebni-karta {
+    flex-direction: column;
+    gap: 30px;
+    padding: 30px 15px;
+  }
 }
 
 .diky-obsah {
@@ -923,7 +989,7 @@ nav a:hover::after {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
 }
 
 .diky-obsah h1 {
@@ -934,7 +1000,7 @@ nav a:hover::after {
 
 .platba-text {
   font-size: 20px;
-  margin-bottom: 5px;
+  margin-bottom: 0px;
 }
 
 .cislo-uctu {
@@ -950,15 +1016,21 @@ nav a:hover::after {
 }
 
 .tesime-se {
-  font-size: 22px;
-  font-weight: 700;
-  margin-top: 40px;
+  font-size: 28px;
+  font-weight: 800;
+  margin: 0;
+  white-space: nowrap; /* Aby se text nezalamoval */
 }
 
 .diky-ilustrace img {
-  width: 350px;
+  width: 100%;
+  max-width: 400px; /* Trochu zvětšíme pro lepší efekt */
   height: auto;
   display: block;
+}
+
+.diky-text-vedle {
+  margin-top: 60px; /* Posune text trochu níž, aby seděl u kola */
 }
 
 .diky-ilustrace img {
@@ -973,6 +1045,20 @@ nav a:hover::after {
   }
   .diky-ilustrace img {
     max-width: 80%;
+  }
+}
+
+@media (max-width: 768px) {
+  .diky-flex-kontejner {
+    flex-direction: column;
+    margin-top: -50px;
+    gap: 10px;
+  }
+  .diky-text-vedle {
+    margin-top: 0;
+  }
+  .tesime-se {
+    font-size: 22px;
   }
 }
 

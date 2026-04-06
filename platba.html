@@ -20,13 +20,18 @@
       <h1>Děkujeme za registraci!</h1>
 
       <p class="platba-text">
-        Startovné <strong>180 Kč / osoba </strong> pošlete na účet:
+        Celkem za <strong id="display-count">1</strong> os. pošlete
+        <strong id="display-total">180</strong> Kč.
       </p>
-      <p class="cislo-uctu">705745053/0800</p>
+      <p class="platba-instrukce">
+        Platbu pošlete na uvedené číslo účtu nebo využijte QR kód:
+      </p>
 
-      <p class="qr-info">Nebo využijte QR kód:</p>
-      <div class="qr-kod">
-        <img src="QR.png" alt="QR kód pro platbu" style="max-width: 200px" />
+      <div class="platebni-karta">
+        <div class="cislo-uctu-velke">705745053/0800</div>
+        <div class="qr-kod-kontejner">
+          <img id="qr-image" src="" alt="QR Platba" />
+        </div>
       </div>
 
       <div class="diky-flex-kontejner">
@@ -68,5 +73,33 @@
 
     window.addEventListener("DOMContentLoaded", inicializujWeb);
   </script>
-</body>
 
+  <script>
+    function generovatPlatbu() {
+      // 1. Získání počtu lidí z URL adresy (?count=X)
+      const urlParams = new URLSearchParams(window.location.search);
+      const count = parseInt(urlParams.get("count")) || 1;
+      const cenaZaOsobu = 180;
+      const celkovaCena = count * cenaZaOsobu;
+
+      // 2. Aktualizace textu na stránce
+      document.getElementById("display-count").innerText = count;
+      document.getElementById("display-total").innerText = celkovaCena;
+
+      // 3. Vygenerování QR kódu přes Paylibo API
+      // Parametry: účet, kód banky, částka, měna, zpráva pro příjemce
+      const acc = "705745053";
+      const bank = "0800";
+      const msg = "TourDeBeer_2026";
+
+      const qrUrl = `https://api.paylibo.com/paylibo/generator/czech/image?accountNumber=${acc}&bankCode=${bank}&amount=${celkovaCena}&currency=CZK&message=${msg}`;
+
+      document.getElementById("qr-image").src = qrUrl;
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      inicializujWeb(); // Vaše původní funkce na header/footer
+      generovatPlatbu();
+    });
+  </script>
+</body>

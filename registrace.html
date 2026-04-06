@@ -19,8 +19,10 @@
     <div class="container">
       <h1 class="registrace-nadpis">Registrace</h1>
 
+      <!-- action="https://formsubmit.co/richard.kobylik@volny.cz" -->
+
       <form
-        action="https://formsubmit.co/richard.kobylik@volny.cz"
+        action="https://formsubmit.co/hubackovamonika0gmail.com"
         method="POST"
         class="registracni-form"
         id="registraceForm"
@@ -52,14 +54,23 @@
             <label>E-mail<span>*</span></label>
             <input type="email" name="E-mail" required />
           </div>
+          <div id="additional-participants-container"></div>
+
+          <div class="form-group" style="margin-bottom: 30px">
+            <button
+              type="button"
+              id="add-person-btn"
+              class="btn"
+              style="background: #27ae60; padding: 10px 20px; font-size: 16px"
+            >
+              + Přidat další osobu
+            </button>
+          </div>
         </div>
 
         <div class="form-group full-width">
           <label>Poznámka</label>
-          <span class="label-info"
-            >(Pokud registrujete více lidí, tak jejich jména uveďte do
-            poznámky)</span
-          >
+
           <textarea name="Poznámka"></textarea>
         </div>
 
@@ -114,23 +125,63 @@
   </script>
 
   <script>
+    let participantCount = 1;
+
+    // Funkce pro přidání polí pro další osobu
+    document.getElementById("add-person-btn").addEventListener("click", () => {
+      participantCount++;
+      const container = document.getElementById(
+        "additional-participants-container",
+      );
+      const personDiv = document.createElement("div");
+      personDiv.className = "form-grid";
+      personDiv.style.marginBottom = "15px";
+      personDiv.style.padding = "15px";
+      personDiv.style.border = "1px dashed #f39c12";
+      personDiv.style.borderRadius = "6px";
+
+      personDiv.innerHTML = `
+      <div style="grid-column: span 2; display: flex; justify-content: space-between; align-items: center;">
+        <h4 style="margin: 0;">Další účastník (${participantCount}.)</h4>
+        <button type="button" class="remove-btn" style="background:none; border:none; color:red; cursor:pointer; font-weight:bold;">Odstranit</button>
+      </div>
+      <div class="form-group">
+        <label>Jméno</label>
+        <input type="text" name="Jméno_${participantCount}" required />
+      </div>
+      <div class="form-group">
+        <label>Příjmení</label>
+        <input type="text" name="Příjmení_${participantCount}" required />
+      </div>
+    `;
+
+      container.appendChild(personDiv);
+
+      // Mazání polí
+      personDiv.querySelector(".remove-btn").addEventListener("click", () => {
+        personDiv.remove();
+        participantCount--;
+      });
+    });
+
     const form = document.getElementById("registraceForm");
 
     form.addEventListener("submit", async function (e) {
       e.preventDefault();
 
       const data = new FormData(form);
+      // Přidáme celkový počet do odesílaných dat pro FormSubmit
+      data.append("Celkový počet osob", participantCount);
 
       const response = await fetch(form.action, {
         method: "POST",
         body: data,
-        headers: {
-          Accept: "application/json",
-        },
+        headers: { Accept: "application/json" },
       });
 
       if (response.ok) {
-        window.location.href = "platba.html";
+        // Předáme počet lidí do URL adresy pro stránku platba.html
+        window.location.href = `platba.html?count=${participantCount}`;
       } else {
         alert("Odeslání se nepodařilo. Zkuste to prosím znovu.");
       }
