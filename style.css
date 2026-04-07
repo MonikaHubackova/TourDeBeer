@@ -70,6 +70,7 @@ nav ul {
   padding: 0;
   display: flex;
   gap: 30px;
+  align-items: center;
 }
 
 nav a {
@@ -78,7 +79,8 @@ nav a {
   font-weight: 600;
   font-size: 18px;
   position: relative;
-  padding-bottom: 5px;
+  line-height: 1;
+  display: block;
 }
 
 nav a::after {
@@ -96,16 +98,24 @@ nav a:hover::after {
   width: 100%;
 }
 
+nav a.btn-registrace::after {
+  display: none;
+  content: none;
+}
+
 .btn-registrace {
   color: var(--color-primary);
   background-color: #ffffff;
   border: 2px solid white;
-  padding: 5px 15px;
+  padding: 10px 20px;
   border-radius: var(--radius);
   text-decoration: none;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: transform 0.3s ease;
-  margin-top: -5px;
+  line-height: 1;
+  height: auto;
 }
 
 .btn-registrace:hover {
@@ -138,28 +148,24 @@ nav a:hover::after {
   position: relative;
   background-color: var(--color-secondary);
   width: 100%;
-
-  min-height: 60vh;
-  max-height: 900px;
+  min-height: 75vh;
   display: flex;
   align-items: center;
   overflow: hidden;
-  z-index: 0;
 }
 
 .hero-background {
   position: absolute;
-  z-index: 999;
   top: 0;
   left: 0;
   width: 55%;
   max-width: 70%;
   height: 100%;
-  z-index: 2;
+  z-index: 1;
 }
 
 .hero-background img {
-  z-index: 99;
+  position: absolute;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -169,21 +175,23 @@ nav a:hover::after {
   position: relative;
   z-index: 10;
   display: flex;
-  justify-content: flex-end;
-  pointer-events: none;
+  width: 100%;
+  max-width: none;
+  padding: 0;
 }
 
 .hero-content {
-  width: 65%;
-  pointer-events: auto;
-  z-index: 10;
+  margin-left: 40vw;
+  flex-shrink: 0;
 }
 
 .hero-main-img {
-  max-width: clamp(450px, 45vw, 800px);
-
-  display: block;
+  width: 45vw;
+  min-width: 500px;
+  max-width: 1000px;
   height: auto;
+  display: block;
+  filter: drop-shadow(0 10px 40px rgba(0, 0, 0, 0.6));
 }
 
 .mobile {
@@ -983,14 +991,17 @@ footer {
 
 @media (max-width: 900px) {
   nav {
-    z-index: 1000;
+    display: block; /* Aby se ul mohlo roztáhnout */
     position: fixed;
     top: 80px;
     left: 0;
     width: 100%;
     background: var(--color-primary);
-    transform: translateY(-140%);
-    transition: 0.3s;
+    transform: translateY(-150%); /* Schované nahoře */
+    transition: transform 0.4s ease-in-out;
+    z-index: 1000;
+    padding: 20px 0;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   }
 
   nav.open {
@@ -998,9 +1009,13 @@ footer {
   }
 
   nav ul {
-    flex-direction: column;
-    padding: 20px;
-    gap: 20px;
+    flex-direction: column; /* Položky pod sebou */
+    align-items: center;
+    gap: 30px;
+  }
+
+  .btn-registrace {
+    width: 200px;
   }
 
   .hamburger {
@@ -1018,7 +1033,8 @@ footer {
   }
 
   .hero {
-    min-height: 50vh;
+    min-height: 60vh;
+    padding: 40px 0;
   }
 
   .hero-background {
@@ -1026,6 +1042,11 @@ footer {
     max-width: none;
     opacity: 0.3;
   }
+
+  .hero-container-flex {
+    justify-content: center;
+  }
+
   .hero-background img {
     object-position: center;
     width: 100%;
@@ -1040,11 +1061,8 @@ footer {
     display: block;
   }
 
-  .hero-container-flex {
-    justify-content: center;
-  }
-
   .hero-content {
+    margin-left: 0;
     width: 95%;
     display: flex;
     justify-content: center;
@@ -1053,7 +1071,8 @@ footer {
 
   .hero-main-img {
     max-width: 100%;
-    margin: 0 auto;
+    max-width: 800px;
+    min-width: 90%;
   }
 
   .galerie-grid {
